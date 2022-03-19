@@ -129,7 +129,6 @@ class SwitchValue {
             }
         }
 
-        //Как затипизировать при string[] и условие filtereObject === ''. Ошибка string[] has no overlap with string
         for (const k in filteredObject) {
             if (filteredObject[k as keyof IshapeColorSize].length === 0)
                 delete filteredObject[k as keyof IshapeColorSize];
@@ -142,7 +141,6 @@ class SwitchValue {
         return data.filter((el: Pick<IdataMain, 'favorite'>) => el['favorite'] === true);
     }
 
-    //interface или пустой массив
     public filterSelectOption(sortedValue: string, data: IdataMain[]) {
         if (data.length === 0) {
             return data;
@@ -293,7 +291,6 @@ class ValueFilter extends SwitchValue {
             throw new Error('data from JSON is Undefined');
         }
 
-        //Разобраться // Не особо понял почему здесь именны интерфейс IShape подходит. По сути массив строк тоже должен пройти
         function filterPlainArray(array: IdataMain[], filters: IshapeColorSize) {
             const getValue = (value: string) => (typeof value === 'string' ? value.toUpperCase() : value);
             const filterKeys = Object.keys(filters);
@@ -400,8 +397,6 @@ class ValueFilter extends SwitchValue {
         valueDOM.map((el: Element) => el.remove());
     }
 
-    //Как-то получилось  - убрал деструктиризацию в return (...args: Keyboardevent) и написад тип callBack, который ивент принимает. this получается
-    //не учитывается? У меня тип только один параметр принимает.
     public debounceDecorator(fn: CallbackType, ms: number) {
         let isCooldown: ReturnType<typeof setTimeout>;
         //Не уверен что тут массив эвентов
@@ -448,7 +443,7 @@ export class ToysSettingFilter extends ValueFilter {
             this.inputObject = '';
             //Обновляем слайдер лет
             const getSliderYear: noUiSlider.target = document.querySelector('.slider__year') as HTMLElement;
-            getSliderYear.noUiSlider?.set([1940, 2020]); //Object is possibly undefined. нЕ понимаю как правильно затипизировать слайдер из библиотеки
+            getSliderYear.noUiSlider?.set([1940, 2020]);
             this.sliderYear['min'] = 1940;
             this.sliderYear['max'] = 2020;
             //обновляем слайдер количества
@@ -512,8 +507,8 @@ export class ToysSettingFilter extends ValueFilter {
     }
 
     public sliderOnChangeCount<T>(eventHandler: Array<T>): void {
-        const [minimum, maximum] = eventHandler; //Не знаю правильно ли так делать. Приходит по идеи массив строк, но не получается его затипизировать. Это связнно наверное с типом слайдера
-        const minNum: number = Math.round(+minimum); //Получается просто дыра в типах. Пришло неизвестно что, но дальше мне это никуда возвращать не нужно
+        const [minimum, maximum] = eventHandler;
+        const minNum: number = Math.round(+minimum);
         const maxNum: number = Math.round(+maximum);
         this.sliderCount['min'] = minNum;
         this.sliderCount['max'] = maxNum;
@@ -597,7 +592,7 @@ export class ToysSettingFilter extends ValueFilter {
             const imgUrl = Promise.all(result);
             const count = arrayFrom.map((el) => this.getDataJS(el));
             const promiseDataCount = Promise.all(count).catch((err) => console.warn(err, 'count is undefined'));
-            dataCount = (await promiseDataCount) as string[]; //ПРиходит void (string| undefined)[]. Без as не пропускает
+            dataCount = (await promiseDataCount) as string[];
 
             dataCount.forEach((item) => {
                 if (item === undefined) {

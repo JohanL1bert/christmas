@@ -30,7 +30,6 @@ export class TreeSetting {
         }
     }
 
-    //Приходит PoinerEvent. Как типизировать его как Pointer Event? и использовать closest
     public changeBackground(event: Event) {
         const target = event.target as HTMLElement;
         const backgroundImg = target.closest('.christmas__background__item');
@@ -256,12 +255,12 @@ export class TreeSetting {
 
     public dragStart(event: DragEvent) {
         event.stopImmediatePropagation();
-        const currentTarget = event.currentTarget as HTMLElement; //По идеи currentTarget это EventTarget
+        const currentTarget = event.currentTarget as HTMLElement;
         const dataSet = currentTarget.getAttribute('data-number');
         if (dataSet === null) {
             throw new Error('dataset is null');
         }
-        event.dataTransfer?.setData('dragn__img', dataSet); //пришлось писать ? chaining
+        event.dataTransfer?.setData('dragn__img', dataSet);
     }
 
     public dragOver(event: DragEvent) {
@@ -279,7 +278,7 @@ export class TreeSetting {
     //Переписать высчитывать кастомно
     public dragDrop(event: DragEvent) {
         event.stopImmediatePropagation();
-        const dragData = event.dataTransfer?.getData('dragn__img') as string; //Объект возможно null. Не понимаю как правильно поймать и затипизировать это
+        const dragData = event.dataTransfer?.getData('dragn__img') as string;
 
         if (dragData === null && dragData === undefined) {
             throw new Error('dragData is null or undefined');
@@ -309,7 +308,7 @@ export class TreeSetting {
 
     public dragDropCard(event: DragEvent) {
         event.stopImmediatePropagation();
-        const dragData = event.dataTransfer?.getData('dragn__img') as string; //Объект возможно null. Не понимаю как правильно поймать и затипизировать это
+        const dragData = event.dataTransfer?.getData('dragn__img') as string;
 
         //Регулярка для индекса
         const regexPatternIndexCard = /^(.?)[^-]/;
