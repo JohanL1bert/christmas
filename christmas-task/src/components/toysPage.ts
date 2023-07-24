@@ -99,22 +99,22 @@ export class ToysPage {
                 <div class="toys__wrapper">
                     <div class="toys__description">
                         <div class="toys__number">
-                            Количество <span class="toys__amount">${el.count}</span>
+                            Amount <span class="toys__amount">${el.count}</span>
                         </div>
                         <div class="toys__year">
-                            Год покупки: <span class="year__number">${el.year}</span>
+                            year of purchase: <span class="year__number">${el.year}</span>
                         </div>
                         <div class="toys__form">
-                            Форма: <span class="form__view">${el.shape}</span>
+                            Shape: <span class="form__view">${el.shape}</span>
                         </div>
                         <div class="toys__color">
-                            Цвет: <span class="color__view">${el.color}</span>
+                            Color: <span class="color__view">${el.color}</span>
                         </div>
                         <div class="toys__size">
-                            Размер: <span class="size__view">${el.size}</span>
+                            Size: <span class="size__view">${el.size}</span>
                         </div>
                         <div class="toys__liked">
-                            Любимая: <span class="liked__toy">${el.favorite == true ? 'да' : 'нет'}</span>
+                            Favorite: <span class="liked__toy">${el.favorite == true ? 'yes' : 'no'}</span>
                         </div>
                         </div>
                         <div class="toys__img">
