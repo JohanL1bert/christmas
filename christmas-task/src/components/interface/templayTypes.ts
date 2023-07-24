@@ -1,4 +1,3 @@
-//Интерфейсы
 export interface SettingObjectBool {
     [key: string]: boolean;
 }

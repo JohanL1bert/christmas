@@ -26,7 +26,7 @@ export class TreeSetting {
             music.currentTime = 0;
         } else {
             this.isPlay = true;
-            void music.play(); //Проммис войд
+            void music.play(); //Promise void
         }
     }
 
@@ -72,8 +72,8 @@ export class TreeSetting {
         containerGarlands.replaceChildren();
     }
 
-    //Слишком зависимо от массива и парных чисел
-    //Позиция гирлянд
+    // Too dependent on array and pairs
+    // Garland position
     private positionGarlands(data: HTMLUListElement) {
         const lenNum = data.childNodes.length;
         let i = lenNum;
@@ -185,7 +185,7 @@ export class TreeSetting {
         }
     }
 
-    //Доделать больше снега, придумать что-то с блоком кнопки
+    // create more snow
     private fallingSnow() {
         const snowBtn = document.querySelector('.snow__setting') as HTMLButtonElement;
         snowBtn.disabled = true;
@@ -275,7 +275,7 @@ export class TreeSetting {
         event.preventDefault();
     }
 
-    //Переписать высчитывать кастомно
+    // Rewrite calculate custom
     public dragDrop(event: DragEvent) {
         event.stopImmediatePropagation();
         const dragData = event.dataTransfer?.getData('dragn__img') as string;
@@ -310,7 +310,7 @@ export class TreeSetting {
         event.stopImmediatePropagation();
         const dragData = event.dataTransfer?.getData('dragn__img') as string;
 
-        //Регулярка для индекса
+        // Regex for index
         const regexPatternIndexCard = /^(.?)[^-]/;
         const indexCardArray = dragData.match(regexPatternIndexCard)?.[0] as string;
         if (indexCardArray === null && indexCardArray === undefined) {

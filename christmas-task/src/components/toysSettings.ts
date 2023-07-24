@@ -259,7 +259,7 @@ class ValueFilter extends SwitchValue {
         idField.value = 'Ничего не найдено';
     }
 
-    //Массив дат или пустой массив
+    // Array data or empty array
     public SortInput(array: IdataMain[]) {
         const secondFilteredArray: IdataMain[] = [];
         array.map((el) => {
@@ -296,7 +296,7 @@ class ValueFilter extends SwitchValue {
             const filterKeys = Object.keys(filters);
 
             return array.filter((item: IdataMain) =>
-                /*итемы из Idatamain*/
+                /*item from Idatamain*/
                 /* validates all filter criteria*/
                 filterKeys.every((key: string) => {
                     // ignores an empty filter
@@ -308,7 +308,7 @@ class ValueFilter extends SwitchValue {
             );
         }
 
-        const filteredList = filterPlainArray(dataFromJson, filterData); //Фильт по значениях: Форма, Цвет, размер
+        const filteredList = filterPlainArray(dataFromJson, filterData); // Filter: shape, color, size
         let filteredListFromSelectOption = this.filterSelectOption(this.sortObject, filteredList);
         if (filteredListFromSelectOption === undefined) {
             filteredListFromSelectOption = filteredList;
@@ -399,7 +399,7 @@ class ValueFilter extends SwitchValue {
 
     public debounceDecorator(fn: CallbackType, ms: number) {
         let isCooldown: ReturnType<typeof setTimeout>;
-        //Не уверен что тут массив эвентов
+        //Array of events?
         return (args: KeyboardEvent) => {
             const funCall = () => {
                 return fn.apply(this, [args]);
@@ -437,16 +437,16 @@ export class ToysSettingFilter extends ValueFilter {
                     el.classList.remove('active', 'active__color');
                 }
             });
-            //Обнуляем ввод инпут
+            // reset input
             const resetInputForm = this.getInputFormHTML();
             resetInputForm.value = '';
             this.inputObject = '';
-            //Обновляем слайдер лет
+            // reset slider
             const getSliderYear: noUiSlider.target = document.querySelector('.slider__year') as HTMLElement;
             getSliderYear.noUiSlider?.set([1940, 2020]);
             this.sliderYear['min'] = 1940;
             this.sliderYear['max'] = 2020;
-            //обновляем слайдер количества
+            // reset slider count
             const getCountSlider: noUiSlider.target = document.querySelector('.slider__count') as HTMLElement;
             getCountSlider.noUiSlider?.set([1, 12]);
             this.sliderCount['min'] = 1;
@@ -455,7 +455,7 @@ export class ToysSettingFilter extends ValueFilter {
             const checkbox = document.querySelector('.liked__toys') as HTMLInputElement;
             checkbox.checked = false;
             this.favoriteObject = false;
-            //Обнуляем баскет
+            // reset basket
             const headerBasket = document.querySelector('.header__basket__amount') as HTMLElement;
             headerBasket.innerHTML = '0';
             this.dataSet = [];
@@ -499,7 +499,6 @@ export class ToysSettingFilter extends ValueFilter {
         }
     }
 
-    //Переписать через дженерик и checked target
     public favoriteCheckbox(event: Event) {
         const ischecked = (<HTMLInputElement>event.target).checked;
         this.favoriteObject = Boolean(ischecked);
@@ -608,7 +607,7 @@ export class ToysSettingFilter extends ValueFilter {
             const count = this.dataSet.map((el: string) => this.getDataJS(el));
             const promiseDataCount = Promise.all(count);
             dataCount = (await promiseDataCount) as string[];
-            //Нужна проверка массив строк или массив undefined. Пока так написал
+            // Пока так написал Need to check array of string of array of undefiend
             dataCount.forEach((item) => {
                 if (item === undefined) {
                     console.warn('item is undefined');
