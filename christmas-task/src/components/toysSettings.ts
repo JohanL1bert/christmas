@@ -84,19 +84,19 @@ class SwitchValue {
 
     public secondFilteredData(data: Array<string>) {
         const valueObject: IvalueObject = {
-            isFormBall: 'шар',
-            isFormBell: 'колокольчик',
-            isFormCone: 'шишка',
-            isFormSnowFlake: 'снежинка',
-            isFormToy: 'фигурка',
-            isColorWhite: 'белый',
-            isColorYellow: 'желтый',
-            isColorRed: 'красный',
-            isColorBlue: 'синий',
-            isColorGreen: 'зелёный',
-            isSizeBig: 'большой',
-            isSizeMedium: 'средний',
-            isSizeSmall: 'малый',
+            isFormBall: 'ball',
+            isFormBell: 'bell',
+            isFormCone: 'pinecone',
+            isFormSnowFlake: 'snowflake',
+            isFormToy: 'figurine',
+            isColorWhite: 'white',
+            isColorYellow: 'yellow',
+            isColorRed: 'red',
+            isColorBlue: 'blue',
+            isColorGreen: 'green',
+            isSizeBig: 'big',
+            isSizeMedium: 'average',
+            isSizeSmall: 'small',
         };
 
         const arrayValue: string[] = [];
@@ -114,17 +114,11 @@ class SwitchValue {
         });
 
         for (const key of arrayValue) {
-            if (key === 'шар' || key === 'колокольчик' || key === 'шишка' || key === 'снежинка' || key === 'фигурка') {
+            if (key === 'ball' || key === 'bell' || key === 'pinecone' || key === 'snowflake' || key === 'figurine') {
                 filteredObject['shape'].push(key);
-            } else if (
-                key === 'белый' ||
-                key === 'желтый' ||
-                key === 'красный' ||
-                key === 'синий' ||
-                key === 'зелёный'
-            ) {
+            } else if (key === 'white' || key === 'yellow' || key === 'red' || key === 'blue' || key === 'green') {
                 filteredObject['color'].push(key);
-            } else if (key === 'большой' || key === 'средний' || key === 'малый') {
+            } else if (key === 'big' || key === 'average' || key === 'small') {
                 filteredObject['size'].push(key);
             }
         }
@@ -220,7 +214,7 @@ class ValueFilter extends SwitchValue {
                             Size: <span class="size__view">${el.size}</span>
                         </div>
                         <div class="toys__liked">
-                            Favorite: <span class="liked__toy">${el.favorite == true ? 'да' : 'нет'}</span>
+                            Favorite: <span class="liked__toy">${el.favorite == true ? 'yes' : 'no'}</span>
                         </div>
                         </div>
                         <div class="toys__img">
@@ -256,7 +250,7 @@ class ValueFilter extends SwitchValue {
 
     private checkerInput() {
         const idField = document.getElementById('search__data') as HTMLInputElement;
-        idField.value = 'Ничего не найдено';
+        idField.value = 'Nothing found';
     }
 
     // Array data or empty array
@@ -607,7 +601,7 @@ export class ToysSettingFilter extends ValueFilter {
             const count = this.dataSet.map((el: string) => this.getDataJS(el));
             const promiseDataCount = Promise.all(count);
             dataCount = (await promiseDataCount) as string[];
-            // Пока так написал Need to check array of string of array of undefiend
+            // Need to check array of string of array of undefiend
             dataCount.forEach((item) => {
                 if (item === undefined) {
                     console.warn('item is undefined');
@@ -658,18 +652,16 @@ export class ToysSettingFilter extends ValueFilter {
             ribbon.classList.remove('ribbon__active');
             const value = Number(headerBasket.textContent as string);
             headerBasket.innerHTML = String(value - 1);
-            treeContainer.replaceChildren();
-            this.renderPlayCard();
-            void this.cloneCard();
         } else {
             ribbon.classList.add('ribbon__active');
             this.dataSet.push(card);
             const value = Number(headerBasket.textContent as string);
             headerBasket.innerHTML = String(value + 1);
-            treeContainer.replaceChildren();
-            this.renderPlayCard();
-            void this.cloneCard();
         }
+
+        treeContainer.replaceChildren();
+        this.renderPlayCard();
+        void this.cloneCard();
     }
 
     public getDataNum(event: Event) {
