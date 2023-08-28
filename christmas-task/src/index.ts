@@ -22,7 +22,7 @@ class Router {
         this.mainPage = document.querySelector('.main') as HTMLElement;
         this.settingPage = document.querySelector('.setting') as HTMLElement;
         this.treePage = document.querySelector('.tree__page') as HTMLElement;
-        this.formInput = document.querySelector('form') as HTMLFormElement;
+        this.formInput = document.querySelector('.header__form__input') as HTMLFormElement;
         this.headerTree = document.querySelector('.header__tree') as HTMLElement;
         this.toysPage = toysPage;
         this.newSetting = newSetting;
