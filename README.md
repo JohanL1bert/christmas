@@ -2,6 +2,6 @@
 
 ## Deploy
 
-https://johanl1bert-christmas-task.netlify.app/#
+https://johanl1bert-christmas.netlify.app/#
 
 ## Info
